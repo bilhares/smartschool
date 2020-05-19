@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Aluno } from '../models/aluno';
 
 @Component({
   selector: 'app-alunos',
@@ -18,6 +19,16 @@ export class AlunosComponent implements OnInit {
     { id: 7, nome: 'Pedro', sobrenome: 'Cardoso', telefone: '3354-6521' },
     { id: 8, nome: 'Vitor', sobrenome: 'Oliveiras', telefone: '3354-6521' },
   ]
+
+  public alunoSelect: Aluno;
+
+  selectAluno(aluno: Aluno) {
+    this.alunoSelect = aluno;
+  }
+
+  voltar() {
+    this.alunoSelect = null;
+  }
 
   constructor() { }
 
