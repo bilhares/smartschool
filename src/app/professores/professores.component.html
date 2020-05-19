@@ -1,7 +1,7 @@
 <div *ngIf="professorSelecionado">
     <div class="row">
         <div class="mr-auto">
-            <app-titulo [titulo]="'Professor: '+professorSelecionado.nome"></app-titulo>
+            <app-titulo [titulo]="'Professor: '+professorSelecionado.id"></app-titulo>
         </div>
         <div class="mt-1">
             <button class="btn btn-warning" (click)="voltar()">Voltar</button>
