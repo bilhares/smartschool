@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Aluno } from '../models/aluno';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-alunos',
@@ -8,10 +9,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit {
-
+  
   titulo = "Alunos";
   public alunoSelect: Aluno;
   public alunoForm: FormGroup;
+  public modalRef: BsModalRef;
+
   public alunos = [
     { id: 1, nome: 'Ana', sobrenome: 'Souza', telefone: '3354-6521' },
     { id: 2, nome: 'Felipe', sobrenome: 'Bilhares', telefone: '3354-6521' },
@@ -23,8 +26,12 @@ export class AlunosComponent implements OnInit {
     { id: 8, nome: 'Vitor', sobrenome: 'Oliveiras', telefone: '3354-6521' },
   ]
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private modalService: BsModalService) {
     this.criarForm();
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   ngOnInit(): void {
@@ -50,4 +57,6 @@ export class AlunosComponent implements OnInit {
   alunoSubmit() {
     console.log(this.alunoForm.value);
   }
+
+
 }

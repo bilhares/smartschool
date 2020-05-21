@@ -5,7 +5,7 @@
                 <app-titulo [titulo]="'Professor: '+professorSelecionado.id"></app-titulo>
             </div>
             <div class="mt-1">
-                <button class="btn btn-warning" (click)="voltar()">Voltar</button>
+                <button class="btn btn-sm btn-warning" (click)="voltar()">Voltar</button>
             </div>
         </div>
         <form [formGroup]="professorForm" (submit)="professorSubmit()">
@@ -32,16 +32,36 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Disciplina</th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let prof of professores" style="cursor: pointer;" (click)="selecionarProfessor(prof)">
+                <tr *ngFor="let prof of professores">
                     <th scope="row">{{prof.id}}</th>
                     <td>{{prof.nome}}</td>
                     <td>{{prof.disciplina}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-warning"
+                                (click)="selecionarProfessor(prof)">Visualizar</button>
+                            <button class="btn btn-sm btn-outline-primary" (click)="openModal(template)">Alunos</button>
+                            <button class="btn btn-sm btn-outline-danger">Desativar</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
     </div>
 </div>
+
+<ng-template #template>
+    <div class="modal-body">
+        This is a modal.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef.hide()">
+            FECHAR
+        </button>
+    </div>
+</ng-template>
