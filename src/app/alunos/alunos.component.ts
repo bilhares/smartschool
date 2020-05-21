@@ -51,6 +51,7 @@ export class AlunosComponent implements OnInit {
 
   criarForm() {
     this.alunoForm = this.fb.group({
+      id: [''],
       nome: ['', Validators.required],
       sobrenome: ['', Validators.required],
       telefone: ['', Validators.required]
@@ -58,7 +59,19 @@ export class AlunosComponent implements OnInit {
   }
 
   alunoSubmit() {
-    console.log(this.alunoForm.value);
+    this.salvarAluno(this.alunoForm.value);
+  }
+
+  salvarAluno(aluno: Aluno) {
+    this.alunoService.put(aluno.id, aluno).subscribe(
+      (retorno: Aluno) => {
+        this.carregarAlunos();
+        console.log(retorno);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
 

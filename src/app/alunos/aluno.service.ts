@@ -13,11 +13,23 @@ export class AlunoService {
 
   constructor(private Http: HttpClient) { }
 
-  getAll() : Observable<Aluno[]> {
+  getAll(): Observable<Aluno[]> {
     return this.Http.get<Aluno[]>(this.baseUrl);
   }
 
-  getById(id: number) :Observable<Aluno> {
+  getById(id: number): Observable<Aluno> {
     return this.Http.get<Aluno>(`${this.baseUrl}/${id}`);
+  }
+
+  post(aluno: Aluno) {
+    return this.Http.post(this.baseUrl, aluno);
+  }
+
+  put(id: number, aluno: Aluno) {
+    return this.Http.put(`${this.baseUrl}/${id}`, aluno);
+  }
+
+  delete(id: number) {
+    return this.Http.delete(`${this.baseUrl}/${id}`);
   }
 }
