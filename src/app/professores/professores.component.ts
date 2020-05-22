@@ -50,13 +50,24 @@ export class ProfessoresComponent implements OnInit {
 
   criarForm() {
     this.professorForm = this.fb.group({
-      id:[''],
-      nome: ['', Validators.required],
-      disciplina: ['', Validators.required]
+      id: [''],
+      nome: ['', Validators.required]
     });
   }
 
   professorSubmit() {
     console.log(this.professorForm.value);
+    this.salvarProfessor(this.professorForm.value);
+  }
+
+  salvarProfessor(professor: Professor) {
+    this.professorService.put(professor.id, professor).subscribe(
+      (professor) => {
+        this.carregarProfessores();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -17,6 +17,7 @@ export class AlunosComponent implements OnInit {
   public modalRef: BsModalRef;
 
   public alunos: Aluno[];
+  public modo = 'post';
 
   constructor(private fb: FormBuilder, private modalService: BsModalService,
     private alunoService: AlunoService) {
@@ -62,8 +63,16 @@ export class AlunosComponent implements OnInit {
     this.salvarAluno(this.alunoForm.value);
   }
 
+  alunoNovo() {
+    this.alunoSelect = new Aluno();
+    this.alunoForm.patchValue(this.alunoSelect);
+  }
+
   salvarAluno(aluno: Aluno) {
-    this.alunoService.put(aluno.id, aluno).subscribe(
+
+    (aluno.id == 0) ? this.modo = 'post' : this.modo = 'put';
+
+    this.alunoService[this.modo](aluno).subscribe(
       (retorno: Aluno) => {
         this.carregarAlunos();
         console.log(retorno);
@@ -73,6 +82,4 @@ export class AlunosComponent implements OnInit {
       }
     );
   }
-
-
 }
