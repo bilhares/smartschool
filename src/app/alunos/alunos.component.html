@@ -50,7 +50,8 @@
                                 class="btn btn-sm btn-outline-warning">Visualizar</button>
                             <button (click)="openModal(template)"
                                 class="btn btn-sm btn-outline-primary">Professores</button>
-                            <button class="btn btn-sm btn-outline-danger">Desativar</button>
+                            <button class="btn btn-sm btn-outline-danger"
+                             (click)="desativar(aluno.id)">Desativar</button>
                         </div>
                     </td>
                 </tr>

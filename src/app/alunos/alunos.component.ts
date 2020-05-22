@@ -82,4 +82,15 @@ export class AlunosComponent implements OnInit {
       }
     );
   }
+
+  desativar(id: number) {
+    this.alunoService.delete(id).subscribe(
+      () => {
+        this.carregarAlunos();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
